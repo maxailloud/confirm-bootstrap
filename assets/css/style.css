@@ -1,0 +1,41 @@
+body {
+    padding-top: 90px;
+}
+
+#icons ul {
+    list-style: none;
+}
+
+.row {
+    margin-bottom: 20px;
+}
+
+.footer {
+    margin-top: 45px;
+    padding: 35px 0 36px;
+    border-top: 1px solid #E5E5E5;
+}
+
+.footer p {
+    margin-bottom: 0;
+    color: #555;
+}
+
+/**** Presentation frame ****/
+.hero-unit {
+    text-align: center;
+}
+
+.hero-unit h1 {
+    font-size: 81px;
+}
+
+.hero-unit p {
+    font-size: 30px;
+}
+.hero-unit a {
+    font-size:      20px;
+    margin-right:   10px;
+}
+
+/**** Presentation frame ****/

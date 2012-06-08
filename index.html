@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>Confirm Bootstrap</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="making useful confirm modal with twitter bootstrap">
+        <meta name="author" content="Maxime AILLOUD">
+
+        <!-- Le styles -->
+        <link href="assets/css/bootstrap.css" rel="stylesheet">
+        <link href="assets/css/bootstrap-responsive.css" rel="stylesheet">
+        <link href="assets/js/google-code-prettify/prettify.css" rel="stylesheet">
+        <link href="assets/css/style.css" rel="stylesheet">
+
+        <!-- Le fav and touch icons -->
+        <link rel="shortcut icon" href="assets/img/favicon.ico">
+    </head>
+
+    <body data-spy="scroll">
+
+        <div class="navbar navbar-fixed-top">
+            <div class="navbar-inner">
+                <div class="container">
+                    <button type="button"class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="brand" href="./index.php">Confirm bootstrap</a>
+                    <div class="nav-collapse collapse">
+                        <ul class="nav">
+                            <li class="active"><a href="#overview">Overview</a></li>
+                            <li class=""><a href="#staticExample">Static example</a></li>
+                            <li class=""><a href="#liveDemo">Live demo</a></li>
+                            <li class=""><a href="#usage">Usage</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+
+            <div id="overview" class="hero-unit">
+                <h1>Confirm Bootstrap</h1>
+                <p>The confirm modal made with Twitter Bootstrap</p>
+                <a class="btn btn-primary btn-large" href="https://github.com/mailloud/confirm-bootstrap">View project on GitHub</a>
+                <a class="btn btn-large" href="https://github.com/mailloud/confirm-bootstrap/zipball/master">Download Famstrap</a>
+            </div>
+
+            <div class="page-header">
+                <h1>Confirm Boostrap <small>confirm with the Twitter Boostrap</small></h1>
+            </div>
+
+            <div class="row">
+                <div class="span3 columns">
+                    <h3>About confirm</h3>
+                    <p>A streamlined, but flexible, take on the traditional javascript confirm functionnality with only the minimum required functionality and smart defaults.</p>
+                    <a href="assets/js/confirm-bootstrap.js" class="btn">Download file</a>
+                </div>
+                <div class="span9 columns">
+                    <section id="staticExample">
+                        <h2>Static example</h2>
+                        <p>Below is a statically rendered confirm.</p>
+                        <div class="well modal-example" style="background-color: #888; border: none;">
+                            <div class="modal" style="position: relative; top: auto; left: auto; margin: 0 auto; z-index: 1; max-width: 100%;">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal">×</button>
+                                    <h3>Confirm modal title example</h3>
+                                </div>
+                                <div class="modal-body">
+                                    <p>Do you want to perform this action ?</p>
+                                </div>
+                                <div class="modal-footer">
+                                    <button class="btn" data-dismiss="modal">Cancel</button>
+                                    <button class="btn btn-primary" data-dismiss="ok">Perform</button>
+                                </div>
+                            </div>
+                        </div> <!-- /well -->
+                    </section>
+
+                    <section id="liveDemo">
+                        <h2>Live demo</h2>
+                        <p>Toggle a confirm via javascript by clicking the button below. It will slide down and fade in from the top of the page.</p>
+                        <a href="" class="btn btn-primary btn-large confirModal" data-confirm-title="Confirm modal title example" data-confirm-message="Do you want to perform this action ?">Launch demo modal</a>
+                    </section>
+                    <hr>
+
+                    <section id="usage">
+                        <h2>Using confirm-bootstrap</h2>
+                        <p>Call the confirm via javascript:</p>
+                        <pre class="prettyprint linenums">$('#myLinkToConfirm').modal()</pre>
+                        <h3>Configure</h3>
+                        <p>Use <a href="http://html5doctor.com/html5-custom-data-attributes/" title="HTML5 data attributes">HTML5 data attributes</a> to configure the confirm modal:</p>
+                        <table class="table table-bordered table-striped">
+                            <thead>
+                                <tr>
+                                    <th style="width: 100px;">Name</th>
+                                    <th style="width: 50px;">type</th>
+                                    <th style="width: 150px;">default</th>
+                                    <th>description</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>data-confirm-title</td>
+                                    <td>string</td>
+                                    <td>Please confirm</td>
+                                    <td>Title of the confirm modal.</td>
+                                </tr>
+                                <tr>
+                                    <td>data-confirm-message</td>
+                                    <td>string</td>
+                                    <td>Are you sure you want to perform this action ?</td>
+                                    <td>Message displayed to the user</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </section>
+                </div>
+            </div>
+
+            <footer class="footer">
+                <p class="pull-right"><a href="">Back to top</a></p>
+                <p>Design inspired by twitter bootstrap design page.</p>
+                <p>Code licensed under the <a href="http://sam.zoy.org/wtfpl/">WTFPL License</a>.</p>
+            </footer>
+
+        </div><!-- /container -->
+
+        <script src="assets/js/jquery.js"></script>
+        <script src="assets/js/bootstrap.min.js"></script>
+        <script src="assets/js/confirm-bootstrap.js"></script>
+        <script src="assets/js/google-code-prettify/prettify.js"></script>
+        <script src="assets/js/application.js"></script>
+
+    </body>
+</html>
