@@ -21,12 +21,12 @@
  (function($) {
     $.fn.confirmModal = function()
     {
-        var confirmLink = this;
         $('body').append('<div id="confirmContainer"></div>');
         var confirmContainer = $('#confirmContainer');
 
         $(this).on('click', function(modalEvent)
         {
+            var confirmLink = $(this);
             modalEvent.preventDefault();
 
             var modal =
@@ -55,13 +55,13 @@
             var options = $.extend(defaults, targetData);
 
             modal = modal.replace('#Heading#',options.confirmTitle).replace('#Body#',options.confirmMessage);
-            $(confirmContainer).html(modal);
+            confirmContainer.html(modal);
 
-            $(confirmContainer).modal('show');
+            confirmContainer.modal('show');
 
-            $('button[data-dismiss="ok"]',confirmContainer).on('click', function(event) {
+            $('button[data-dismiss="ok"]', confirmContainer).on('click', function(event) {
                 confirmContainer.modal('hide');
-                $(location).attr('href',confirmLink.attr('href'));
+                window.location = confirmLink.attr('href');
             });
         });
 
