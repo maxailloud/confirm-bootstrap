@@ -39,8 +39,8 @@
                     '<p>#Body#</p>' +
                 '</div>' +
                 '<div class="modal-footer">' +
-                    '<button class="btn" data-dismiss="modal">Cancel</button>' +
-                    '<button class="btn btn-primary" data-dismiss="ok">Yes</button>' +
+                    '<button class="btn btn-primary" data-dismiss="ok">#Ok#</button>' +
+                    '<button class="btn" data-dismiss="modal">#Cancel#</button>' +
                 '</div>' +
             '</div>'
             ;
@@ -49,12 +49,14 @@
 
             var defaults = {
                 confirmTitle   : 'Please confirm',
-                confirmMessage : 'Are you sure you want to perform this action ?'
+                confirmMessage : 'Are you sure you want to perform this action ?',
+                confirmTitle   : 'Yes',
+                confirmCancel  : 'Cancel'
             };
 
             var options = $.extend(defaults, targetData);
 
-            modal = modal.replace('#Heading#',options.confirmTitle).replace('#Body#',options.confirmMessage);
+            modal = modal.replace('#Heading#',options.confirmTitle).replace('#Body#',options.confirmMessage).replace('#Ok#',options.confirmOk).replace('#Cancel#',options.confirmCancel);
             confirmContainer.html(modal);
 
             confirmContainer.modal('show');
