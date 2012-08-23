@@ -34,7 +34,7 @@
             var defaults = {
                 confirmTitle     : 'Please confirm',
                 confirmMessage   : 'Are you sure you want to perform this action ?',
-                confirmTitle     : 'Yes',
+                confirmOk        : 'Yes',
                 confirmCancel    : 'Cancel',
                 confirmDirection : 'rtl'
             };
