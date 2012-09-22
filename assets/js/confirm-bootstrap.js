@@ -19,7 +19,7 @@
 
 
  (function($) {
-    $.fn.confirmModal = function()
+    $.fn.confirmModal = function(opts)
     {
         $('body').append('<div id="confirmContainer"></div>');
         var confirmContainer = $('#confirmContainer');
@@ -39,7 +39,7 @@
                 confirmDirection : 'rtl'
             };
 
-            var options = $.extend(defaults, targetData);
+            var options = $.extend(defaults, opts, targetData);
 
             var modal =
             '<div class="modal" id="confirmModal">' +
