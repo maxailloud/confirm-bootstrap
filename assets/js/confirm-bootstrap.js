@@ -26,12 +26,11 @@
 
         $(this).on('click', function(modalEvent)
         {
-            var confirmLink = $(this);
             modalEvent.preventDefault();
 
-            var targetData = $(modalEvent.target).data();
-
-            var defaults = {
+            var confirmLink = $(this);
+            var targetData  = confirmLink.data();
+            var defaults    = {
                 confirmTitle     : 'Please confirm',
                 confirmMessage   : 'Are you sure you want to perform this action ?',
                 confirmOk        : 'Yes',
@@ -52,12 +51,15 @@
                 '</div>' +
                 '<div class="modal-footer">'
             ;
-            if (options.confirmDirection == 'ltr') {
+            if(options.confirmDirection == 'ltr')
+            {
                 modal = modal +
                     '<button class="btn btn-primary" data-dismiss="ok">#Ok#</button>' +
                     '<button class="btn" data-dismiss="modal">#Cancel#</button>'
                 ;
-            } else {
+            }
+            else
+            {
                 modal = modal +
                     '<button class="btn" data-dismiss="modal">#Cancel#</button>' +
                     '<button class="btn btn-primary" data-dismiss="ok">#Ok#</button>'
