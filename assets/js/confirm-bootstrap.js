@@ -19,15 +19,26 @@
 
 
  (function($) {
-    $.fn.confirmModal = function()
+    $.fn.confirmModal = function(opts)
     {
         $('body').append('<div id="confirmContainer"></div>');
         var confirmContainer = $('#confirmContainer');
 
         $(this).on('click', function(modalEvent)
         {
-            var confirmLink = $(this);
             modalEvent.preventDefault();
+
+            var confirmLink = $(this);
+            var targetData  = confirmLink.data();
+            var defaults    = {
+                confirmTitle     : 'Please confirm',
+                confirmMessage   : 'Are you sure you want to perform this action ?',
+                confirmOk        : 'Yes',
+                confirmCancel    : 'Cancel',
+                confirmDirection : 'rtl'
+            };
+
+            var options = $.extend(defaults, opts, targetData);
 
             var modal =
             '<div class="modal" id="confirmModal">' +
@@ -38,23 +49,33 @@
                 '<div class="modal-body">' +
                     '<p>#Body#</p>' +
                 '</div>' +
-                '<div class="modal-footer">' +
-                    '<button class="btn" data-dismiss="modal">Cancel</button>' +
-                    '<button class="btn btn-primary" data-dismiss="ok">Yes</button>' +
+                '<div class="modal-footer">'
+            ;
+            if(options.confirmDirection == 'ltr')
+            {
+                modal = modal +
+                    '<button class="btn btn-primary" data-dismiss="ok">#Ok#</button>' +
+                    '<button class="btn" data-dismiss="modal">#Cancel#</button>'
+                ;
+            }
+            else
+            {
+                modal = modal +
+                    '<button class="btn" data-dismiss="modal">#Cancel#</button>' +
+                    '<button class="btn btn-primary" data-dismiss="ok">#Ok#</button>'
+                ;
+            }
+            modal = modal +
                 '</div>' +
             '</div>'
             ;
 
-            var targetData = $(modalEvent.target).data();
-
-            var defaults = {
-                confirmTitle   : 'Please confirm',
-                confirmMessage : 'Are you sure you want to perform this action ?'
-            };
-
-            var options = $.extend(defaults, targetData);
-
-            modal = modal.replace('#Heading#',options.confirmTitle).replace('#Body#',options.confirmMessage);
+            modal = modal.
+                replace('#Heading#',options.confirmTitle).
+                replace('#Body#',options.confirmMessage).
+                replace('#Ok#',options.confirmOk).
+                replace('#Cancel#',options.confirmCancel)
+            ;
             confirmContainer.html(modal);
 
             confirmContainer.modal('show');
