@@ -21,66 +21,78 @@
  (function($) {
     $.fn.confirmModal = function(opts)
     {
-        $('body').append('<div id="confirmContainer"></div>');
-        var confirmContainer = $('#confirmContainer');
+        var body = $('body');
+        var defaultOptions    = {
+            confirmTitle     : 'Please confirm',
+            confirmMessage   : 'Are you sure you want to perform this action ?',
+            confirmOk        : 'Yes',
+            confirmCancel    : 'Cancel',
+            confirmDirection : 'rtl'
+        };
+        var options = $.extend(defaultOptions, opts);
+        var time    = Date.now();
 
-        $(this).on('click', function(modalEvent)
-        {
-            modalEvent.preventDefault();
-
-            var confirmLink = $(this);
-            var targetData  = confirmLink.data();
-            var defaults    = {
-                confirmTitle     : 'Please confirm',
-                confirmMessage   : 'Are you sure you want to perform this action ?',
-                confirmOk        : 'Yes',
-                confirmCancel    : 'Cancel',
-                confirmDirection : 'rtl'
-            };
-
-            var options = $.extend(defaults, opts, targetData);
-
-            var modal =
-            '<div class="modal" id="confirmModal">' +
+        var headModalTemplate =
+            '<div class="modal hide fade" id="#modalId#" tabindex="-1" role="dialog" aria-labelledby="#AriaLabel#" aria-hidden="true">' +
                 '<div class="modal-header">' +
-                    '<button type="button" class="close" data-dismiss="modal">×</button>' +
+                    '<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>' +
                     '<h3>#Heading#</h3>' +
                 '</div>' +
                 '<div class="modal-body">' +
                     '<p>#Body#</p>' +
                 '</div>' +
-                '<div class="modal-footer">'
-            ;
-            if(options.confirmDirection == 'ltr')
-            {
-                modal = modal +
-                    '<button class="btn btn-primary" data-dismiss="ok">#Ok#</button>' +
-                    '<button class="btn" data-dismiss="modal">#Cancel#</button>'
-                ;
-            }
-            else
-            {
-                modal = modal +
-                    '<button class="btn" data-dismiss="modal">#Cancel#</button>' +
-                    '<button class="btn btn-primary" data-dismiss="ok">#Ok#</button>'
-                ;
-            }
-            modal = modal +
+                '<div class="modal-footer">' +
+                '#buttonTemplate#' +
                 '</div>' +
             '</div>'
             ;
 
-            modal = modal.replace('#Heading#',options.confirmTitle).replace('#Body#',options.confirmMessage).replace('#Ok#',options.confirmOk).replace('#Cancel#',options.confirmCancel);
-            confirmContainer.html(modal);
+        return this.each(function(index)
+        {
+            var confirmLink = $(this);
+            var targetData  = confirmLink.data();
 
-            confirmContainer.modal('show');
+            var currentOptions = $.extend(options, targetData);
 
-            $('button[data-dismiss="ok"]', confirmContainer).on('click', function(event) {
-                confirmContainer.modal('hide');
-                window.location = confirmLink.attr('href');
+            var modalId = "confirmModal" + parseInt(time + index);
+            var modalTemplate = headModalTemplate;
+            var buttonTemplate =
+                '<button class="btn" data-dismiss="modal" aria-hidden="true">#Cancel#</button>' +
+                '<button class="btn btn-primary" data-dismiss="ok" data-href="' + confirmLink.attr('href') + '">#Ok#</button>'
+            ;
+
+            if(options.confirmDirection == 'ltr')
+            {
+                buttonTemplate =
+                    '<button class="btn btn-primary" data-dismiss="ok" data-href="' + confirmLink.attr('href') + '">#Ok#</button>' +
+                    '<button class="btn" data-dismiss="modal" aria-hidden="true">#Cancel#</button>'
+                ;
+            }
+
+            modalTemplate = modalTemplate.
+                replace('#buttonTemplate#',buttonTemplate).
+                replace('#modalId#',modalId).
+                replace('#AriaLabel#',options.confirmTitle).
+                replace('#Heading#',options.confirmTitle).
+                replace('#Body#',options.confirmMessage).
+                replace('#Ok#',options.confirmOk).
+                replace('#Cancel#',options.confirmCancel)
+            ;
+
+            body.append(modalTemplate);
+
+            var confirmModal = $('#' + modalId);
+
+            $(this).on('click', function(modalEvent)
+            {
+                modalEvent.preventDefault();
+                confirmModal.modal('show');
+
+                $('button[data-dismiss="ok"]', confirmModal).on('click', function(event) {
+                    confirmModal.modal('hide');
+                    window.location = $(this).data('href');
+                });
             });
         });
-
-        return this;
     };
 })(jQuery);
