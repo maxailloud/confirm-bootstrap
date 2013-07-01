@@ -41,9 +41,9 @@
             var options = $.extend(defaults, opts, targetData);
 
             var modal =
-            '<div class="modal" id="confirmModal">' +
+            '<div class="modal hide fade" id="confirmModal" tabindex="-1" role="dialog" aria-labelledby="#AriaLabel#" aria-hidden="true">' +
                 '<div class="modal-header">' +
-                    '<button type="button" class="close" data-dismiss="modal">×</button>' +
+                    '<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>' +
                     '<h3>#Heading#</h3>' +
                 '</div>' +
                 '<div class="modal-body">' +
@@ -55,13 +55,13 @@
             {
                 modal = modal +
                     '<button class="btn btn-primary" data-dismiss="ok">#Ok#</button>' +
-                    '<button class="btn" data-dismiss="modal">#Cancel#</button>'
+                    '<button class="btn" data-dismiss="modal" aria-hidden="true">#Cancel#</button>'
                 ;
             }
             else
             {
                 modal = modal +
-                    '<button class="btn" data-dismiss="modal">#Cancel#</button>' +
+                    '<button class="btn" data-dismiss="modal" aria-hidden="true">#Cancel#</button>' +
                     '<button class="btn btn-primary" data-dismiss="ok">#Ok#</button>'
                 ;
             }
@@ -71,6 +71,7 @@
             ;
 
             modal = modal.
+                replace('#AriaLabel#',options.confirmTitle).
                 replace('#Heading#',options.confirmTitle).
                 replace('#Body#',options.confirmMessage).
                 replace('#Ok#',options.confirmOk).
