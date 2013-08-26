@@ -33,16 +33,20 @@
         var time    = Date.now();
 
         var headModalTemplate =
-            '<div class="modal hide fade" id="#modalId#" tabindex="-1" role="dialog" aria-labelledby="#AriaLabel#" aria-hidden="true">' +
-                '<div class="modal-header">' +
-                    '<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>' +
-                    '<h3>#Heading#</h3>' +
-                '</div>' +
-                '<div class="modal-body">' +
-                    '<p>#Body#</p>' +
-                '</div>' +
-                '<div class="modal-footer">' +
-                '#buttonTemplate#' +
+            '<div class="modal fade" id="#modalId#" tabindex="-1" role="dialog" aria-labelledby="#AriaLabel#" aria-hidden="true">' +
+                '<div class="modal-dialog">' +
+                    '<div class="modal-content">' +
+                        '<div class="modal-header">' +
+                            '<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>' +
+                            '<h3>#Heading#</h3>' +
+                        '</div>' +
+                        '<div class="modal-body">' +
+                            '<p>#Body#</p>' +
+                        '</div>' +
+                        '<div class="modal-footer">' +
+                        '#buttonTemplate#' +
+                        '</div>' +
+                    '</div>' +
                 '</div>' +
             '</div>'
             ;
@@ -57,7 +61,7 @@
             var modalId = "confirmModal" + parseInt(time + index);
             var modalTemplate = headModalTemplate;
             var buttonTemplate =
-                '<button class="btn" data-dismiss="modal" aria-hidden="true">#Cancel#</button>' +
+                '<button class="btn btn-default" data-dismiss="modal">#Cancel#</button>' +
                 '<button class="btn btn-primary" data-dismiss="ok" data-href="' + confirmLink.attr('href') + '">#Ok#</button>'
             ;
 
@@ -65,7 +69,7 @@
             {
                 buttonTemplate =
                     '<button class="btn btn-primary" data-dismiss="ok" data-href="' + confirmLink.attr('href') + '">#Ok#</button>' +
-                    '<button class="btn" data-dismiss="modal" aria-hidden="true">#Cancel#</button>'
+                    '<button class="btn btn-default" data-dismiss="modal">#Cancel#</button>'
                 ;
             }
 
