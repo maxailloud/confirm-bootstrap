@@ -27,7 +27,8 @@
             confirmMessage   : 'Are you sure you want to perform this action ?',
             confirmOk        : 'Yes',
             confirmCancel    : 'Cancel',
-            confirmDirection : 'rtl'
+            confirmDirection : 'rtl',
+            confirmStyle     : 'primary'
         };
         var options = $.extend(defaultOptions, opts);
         var time    = Date.now();
@@ -58,25 +59,26 @@
             var modalTemplate = headModalTemplate;
             var buttonTemplate =
                 '<button class="btn" data-dismiss="modal" aria-hidden="true">#Cancel#</button>' +
-                '<button class="btn btn-primary" data-dismiss="ok" data-href="' + confirmLink.attr('href') + '">#Ok#</button>'
+                '<button class="btn btn-#Style#" data-dismiss="ok" data-href="' + confirmLink.attr('href') + '">#Ok#</button>'
             ;
 
             if(options.confirmDirection == 'ltr')
             {
                 buttonTemplate =
-                    '<button class="btn btn-primary" data-dismiss="ok" data-href="' + confirmLink.attr('href') + '">#Ok#</button>' +
+                    '<button class="btn btn-#Style#" data-dismiss="ok" data-href="' + confirmLink.attr('href') + '">#Ok#</button>' +
                     '<button class="btn" data-dismiss="modal" aria-hidden="true">#Cancel#</button>'
                 ;
             }
 
             modalTemplate = modalTemplate.
-                replace('#buttonTemplate#',buttonTemplate).
-                replace('#modalId#',modalId).
-                replace('#AriaLabel#',options.confirmTitle).
-                replace('#Heading#',options.confirmTitle).
-                replace('#Body#',options.confirmMessage).
-                replace('#Ok#',options.confirmOk).
-                replace('#Cancel#',options.confirmCancel)
+                replace('#buttonTemplate#', buttonTemplate).
+                replace('#modalId#', modalId).
+                replace('#AriaLabel#', options.confirmTitle).
+                replace('#Heading#', options.confirmTitle).
+                replace('#Body#', options.confirmMessage).
+                replace('#Ok#', options.confirmOk).
+                replace('#Cancel#', options.confirmCancel).
+                replace('#Style#', options.confirmStyle)
             ;
 
             body.append(modalTemplate);
