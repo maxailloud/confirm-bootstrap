@@ -28,7 +28,8 @@
             confirmOk        : 'Yes',
             confirmCancel    : 'Cancel',
             confirmDirection : 'rtl',
-            confirmStyle     : 'primary'
+            confirmStyle     : 'primary',
+            confirmCallback  : defaultCallback
         };
         var options = $.extend(defaultOptions, opts);
         var time    = Date.now();
@@ -63,13 +64,13 @@
             var modalTemplate = headModalTemplate;
             var buttonTemplate =
                 '<button class="btn btn-default" data-dismiss="modal">#Cancel#</button>' +
-                '<button class="btn btn-#Style#" data-dismiss="ok" data-href="' + confirmLink.attr('href') + '">#Ok#</button>'
+                '<button class="btn btn-#Style#" data-dismiss="ok">#Ok#</button>'
             ;
 
             if(options.confirmDirection == 'ltr')
             {
                 buttonTemplate =
-                    '<button class="btn btn-#Style#" data-dismiss="ok" data-href="' + confirmLink.attr('href') + '">#Ok#</button>' +
+                    '<button class="btn btn-#Style#" data-dismiss="ok">#Ok#</button>' +
                     '<button class="btn btn-default" data-dismiss="modal">#Cancel#</button>'
                 ;
             }
@@ -89,16 +90,23 @@
 
             var confirmModal = $('#' + modalId);
 
-            $(this).on('click', function(modalEvent)
+            confirmLink.on('click', function(modalEvent)
             {
                 modalEvent.preventDefault();
                 confirmModal.modal('show');
 
+                var originalTarget = this;
+
                 $('button[data-dismiss="ok"]', confirmModal).on('click', function(event) {
                     confirmModal.modal('hide');
-                    window.location = $(this).data('href');
+                    options.confirmCallback(confirmLink);
                 });
             });
         });
+
+        function defaultCallback(target)
+        {
+            window.location = $(target).attr('href');
+        }
     };
 })(jQuery);
