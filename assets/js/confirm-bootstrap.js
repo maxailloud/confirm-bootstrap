@@ -28,7 +28,8 @@
             confirmOk        : 'Yes',
             confirmCancel    : 'Cancel',
             confirmDirection : 'rtl',
-            confirmStyle     : 'primary'
+            confirmStyle     : 'primary',
+            confirmCallback  : defaultCallback
         };
         var options = $.extend(defaultOptions, opts);
         var time    = Date.now();
@@ -85,16 +86,21 @@
 
             var confirmModal = $('#' + modalId);
 
-            $(this).on('click', function(modalEvent)
+            confirmLink.on('click', function(modalEvent)
             {
                 modalEvent.preventDefault();
                 confirmModal.modal('show');
 
                 $('button[data-dismiss="ok"]', confirmModal).on('click', function(event) {
                     confirmModal.modal('hide');
-                    window.location = $(this).data('href');
+                    options.confirmCallback(confirmLink);
                 });
             });
         });
+
+        function defaultCallback(target)
+        {
+            window.location = $(target).attr('href');
+        }
     };
 })(jQuery);

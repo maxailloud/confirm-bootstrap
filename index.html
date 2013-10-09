@@ -100,6 +100,7 @@
     confirmCancel    : 'Cutom cancel',
     confirmDirection : 'rtl',
     confirmStyle     : 'primary'
+    confirmCallback  : defaultCallback
 });</pre>
                         <p>You can use <a href="http://html5doctor.com/html5-custom-data-attributes/" title="HTML5 data attributes">HTML5 data attributes</a> to configure the confirm modal:</p>
                         <table class="table table-bordered table-striped">
@@ -147,6 +148,12 @@
                                     <td>string</td>
                                     <td>primary</td>
                                     <td>Style of the validation button.</td>
+                                </tr>
+                                <tr>
+                                    <td>data-confirm-callbacl</td>
+                                    <td>string</td>
+                                    <td>defaultCallback</td>
+                                    <td>Function to execute when validate modal..</td>
                                 </tr>
                             </tbody>
                         </table>
