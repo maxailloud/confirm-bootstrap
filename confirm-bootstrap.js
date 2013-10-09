@@ -95,8 +95,6 @@
                 modalEvent.preventDefault();
                 confirmModal.modal('show');
 
-                var originalTarget = this;
-
                 $('button[data-dismiss="ok"]', confirmModal).on('click', function(event) {
                     confirmModal.modal('hide');
                     options.confirmCallback(confirmLink);
