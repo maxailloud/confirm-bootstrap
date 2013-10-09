@@ -28,7 +28,8 @@
             confirmOk        : 'Yes',
             confirmCancel    : 'Cancel',
             confirmDirection : 'rtl',
-            confirmStyle     : 'primary'
+            confirmStyle     : 'primary',
+            confirmCallback  : defaultCallback
         };
         var options = $.extend(defaultOptions, opts);
         var time    = Date.now();
@@ -71,30 +72,35 @@
             }
 
             modalTemplate = modalTemplate.
-                replace('#buttonTemplate#',buttonTemplate).
-                replace('#modalId#',modalId).
-                replace('#AriaLabel#',options.confirmTitle).
-                replace('#Heading#',options.confirmTitle).
-                replace('#Body#',options.confirmMessage).
-                replace('#Ok#',options.confirmOk).
-                replace('#Cancel#',options.confirmCancel).
-                replace('#Style#',options.confirmStyle)
+                replace('#buttonTemplate#', buttonTemplate).
+                replace('#modalId#', modalId).
+                replace('#AriaLabel#', options.confirmTitle).
+                replace('#Heading#', options.confirmTitle).
+                replace('#Body#', options.confirmMessage).
+                replace('#Ok#', options.confirmOk).
+                replace('#Cancel#', options.confirmCancel).
+                replace('#Style#', options.confirmStyle)
             ;
 
             body.append(modalTemplate);
 
             var confirmModal = $('#' + modalId);
 
-            $(this).on('click', function(modalEvent)
+            confirmLink.on('click', function(modalEvent)
             {
                 modalEvent.preventDefault();
                 confirmModal.modal('show');
 
                 $('button[data-dismiss="ok"]', confirmModal).on('click', function(event) {
                     confirmModal.modal('hide');
-                    window.location = $(this).data('href');
+                    options.confirmCallback(confirmLink);
                 });
             });
         });
+
+        function defaultCallback(target)
+        {
+            window.location = $(target).attr('href');
+        }
     };
 })(jQuery);
