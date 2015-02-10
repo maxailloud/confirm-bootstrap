@@ -32,7 +32,6 @@
             confirmCallback  : defaultCallback
         };
         var options = $.extend(defaultOptions, opts);
-        var time    = Date.now();
 
         var headModalTemplate =
             '<div class="modal fade" id="#modalId#" tabindex="-1" role="dialog" aria-labelledby="#AriaLabel#" aria-hidden="true">' +
@@ -60,7 +59,7 @@
 
             var currentOptions = $.extend(options, targetData);
 
-            var modalId = "confirmModal" + parseInt(time + index);
+            var modalId = "confirmModal" + Math.floor(Math.random()*(1e+9));
             var modalTemplate = headModalTemplate;
             var buttonTemplate =
                 '<button class="btn btn-default" data-dismiss="modal">#Cancel#</button>' +
