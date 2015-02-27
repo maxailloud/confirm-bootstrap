@@ -74,6 +74,16 @@
                 ;
             }
 
+            if(typeof options.confirmTitle == 'function')
+            {
+                options.confirmTitle = options.confirmTitle.call(this);
+            }
+
+            if(typeof options.confirmMessage == 'function')
+            {
+                options.confirmMessage = options.confirmMessage.call(this);
+            }
+
             modalTemplate = modalTemplate.
                 replace('#buttonTemplate#', buttonTemplate).
                 replace('#modalId#', modalId).
