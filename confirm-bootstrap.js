@@ -74,12 +74,24 @@
                 ;
             }
 
+            var confirmTitle = options.confirmTitle;
+            if(typeof options.confirmTitle == 'function')
+            {
+                confirmTitle = options.confirmTitle.call(this);
+            }
+
+            var confirmMessage = options.confirmMessage;
+            if(typeof options.confirmMessage == 'function')
+            {
+                confirmMessage = options.confirmMessage.call(this);
+            }
+
             modalTemplate = modalTemplate.
                 replace('#buttonTemplate#', buttonTemplate).
                 replace('#modalId#', modalId).
-                replace('#AriaLabel#', options.confirmTitle).
-                replace('#Heading#', options.confirmTitle).
-                replace('#Body#', options.confirmMessage).
+                replace('#AriaLabel#', confirmTitle).
+                replace('#Heading#', confirmTitle).
+                replace('#Body#', confirmMessage).
                 replace('#Ok#', options.confirmOk).
                 replace('#Cancel#', options.confirmCancel).
                 replace('#Style#', options.confirmStyle)
