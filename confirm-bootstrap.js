@@ -29,7 +29,8 @@
             confirmCancel    : 'Cancel',
             confirmDirection : 'rtl',
             confirmStyle     : 'primary',
-            confirmCallback  : defaultCallback
+            confirmCallback  : defaultCallback,
+            confirmDismiss   : true
         };
         var options = $.extend(defaultOptions, opts);
 
@@ -108,12 +109,14 @@
             });
 
             $('button[data-dismiss="ok"]', confirmModal).on('click', function(event) {
-                confirmModal.modal('hide');
-                options.confirmCallback(confirmLink);
+                if (options.confirmDismiss) {
+                    confirmModal.modal('hide');
+                }
+                options.confirmCallback(confirmLink, confirmModal);
             });
         });
 
-        function defaultCallback(target)
+        function defaultCallback(target, modal)
         {
             window.location = $(target).attr('href');
         }
