@@ -30,7 +30,8 @@
             confirmDirection : 'rtl',
             confirmStyle     : 'primary',
             confirmCallback  : defaultCallback,
-            confirmDismiss   : true
+            confirmDismiss   : true,
+            confirmAutoOpen  : false
         };
         var options = $.extend(defaultOptions, opts);
 
@@ -114,6 +115,10 @@
                 }
                 options.confirmCallback(confirmLink, confirmModal);
             });
+
+            if (options.confirmAutoOpen) {
+                confirmModal.modal('show');
+            }
         });
 
         function defaultCallback(target, modal)
