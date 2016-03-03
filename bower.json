@@ -1,0 +1,15 @@
+{
+  "name": "confirm-bootstrap",
+  "description": "Confirm modal made with twitter bootstrap",
+  "main": "confirm-bootstrap.js",
+  "authors": [
+    "Maxime Ailloud"
+  ],
+  "license": "WTFPL",
+  "keywords": [
+    "confirm",
+    "bootstrap"
+  ],
+  "homepage": "https://github.com/maxailloud/confirm-bootstrap",
+  "moduleType": []
+}
