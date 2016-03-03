@@ -33,7 +33,6 @@
             confirmDismiss   : true,
             confirmAutoOpen  : false
         };
-        var options = $.extend(defaultOptions, opts);
 
         var headModalTemplate =
             '<div class="modal fade" id="#modalId#" tabindex="-1" role="dialog" aria-labelledby="#AriaLabel#" aria-hidden="true">' +
@@ -54,12 +53,14 @@
             '</div>'
             ;
 
-        return this.each(function(index)
+        return this.each(function()
         {
+            var options = $.extend({}, defaultOptions, opts);
+
             var confirmLink = $(this);
             var targetData  = confirmLink.data();
 
-            var currentOptions = $.extend(options, targetData);
+            $.extend(options, targetData);
 
             var modalId = "confirmModal" + Math.floor(Math.random()*(1e+9));
             var modalTemplate = headModalTemplate;
