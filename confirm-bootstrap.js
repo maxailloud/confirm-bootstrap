@@ -107,6 +107,7 @@
             confirmLink.on('click', function(modalEvent)
             {
                 modalEvent.preventDefault();
+                modalEvent.stopPropagation();
                 confirmModal.modal('show');
             });
 
@@ -124,7 +125,41 @@
 
         function defaultCallback(target, modal)
         {
-            window.location = $(target).attr('href');
+            var meth = target.data('method');
+            if(meth == 'post' || meth == 'delete'){
+                post($(target).attr('href'), {'authenticity_token': $('meta[name="csrf-token"]').attr('content')}, meth);
+            }else{
+                window.location = $(target).attr('href');
+            }
+        }
+
+        function post(path, params, method) {
+            method = method || "post"; // Set method to post by default if not specified.
+
+            // The rest of this code assumes you are not using a library.
+            // It can be made less wordy if you use one.
+            var form = document.createElement("form");
+            form.setAttribute("method", method);
+            form.setAttribute("action", path);
+
+            if(method != "post" && method != "get" ){
+                params['_method'] = method
+                form.setAttribute("method", 'post');
+            }
+
+            for(var key in params) {
+                if(params.hasOwnProperty(key)) {
+                    var hiddenField = document.createElement("input");
+                    hiddenField.setAttribute("type", "hidden");
+                    hiddenField.setAttribute("name", key);
+                    hiddenField.setAttribute("value", params[key]);
+
+                    form.appendChild(hiddenField);
+                 }
+            }
+
+            document.body.appendChild(form);
+            form.submit();
         }
     };
 })(jQuery);
