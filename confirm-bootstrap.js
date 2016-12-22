@@ -1,6 +1,6 @@
 /* ===================================================
  * confirmModal by Maxime AILLOUD
- * https://github.com/mailloud/confirm-bootstrap
+ * https://github.com/maxailloud/confirm-bootstrap
  * ===================================================
  *            DO WHAT THE FUCK YOU WANT TO PUBLIC LICENCE
  *                    Version 2, December 2004
